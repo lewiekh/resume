@@ -29,15 +29,8 @@ bio.display = function() {
     $("#header").prepend(formattedMessage);
     $("#header").prepend(formattedRole);
     $("#header").prepend(formattedName);
-    var ci = ["#topContacts", "#footerContacts"];
-    for (var i = 0; i < ci.length; i++) {
-        cInfo = ci[i];
-        $(cInfo).append(formattedMobile);
-        $(cInfo).append(formattedEmail);
-        $(cInfo).append(formattedTwitter);
-        $(cInfo).append(formattedGithub);
-        $(cInfo).append(formattedLocation);
-    }
+    var ci = "#topContacts, #footerContacts";
+    $(ci).append(formattedMobile, formattedEmail, formattedTwitter, formattedGithub, formattedLocation);
 };
 $("#header").append(HTMLskillsStart);
 for (var i = 0; i < bio.skills.length; i++) {
@@ -89,7 +82,7 @@ var education = {
         name: "UOP",
         location: "San Jose, CA",
         degree: "Bachelor degree",
-        majors: "Marketing",
+        majors: ["Marketing"],
         dates: "2012",
         url: "http://www.phoenix.com"
     }],
@@ -161,10 +154,11 @@ project.display = function() {
         $(".project-entry:last").append(formattedProjectdates);
         var formattedProjectdesc = HTMLprojectDescription.replace(data, proj.description);
         $(".project-entry:last").append(formattedProjectdesc);
-        var formattedProjectimages = HTMLprojectImage.replace(data, proj.images[0]);
-        $(".project-entry:last").append(formattedProjectimages);
-        var formattedProjectimages2 = HTMLprojectImage.replace(data, proj.images[1]);
-        $(".project-entry:last").append(formattedProjectimages2);
+        for (var x = 0; x < project.projects[i].images.length; x++) {
+            img = project.projects[i].images[x];
+            var formattedProjectimages = HTMLprojectImage.replace(data, img);
+            $(".project-entry:last").append(formattedProjectimages);
+        }
     }
 };
 project.display();
