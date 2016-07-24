@@ -31,13 +31,13 @@ bio.display = function() {
     $("#header").prepend(formattedName);
     var ci = "#topContacts, #footerContacts";
     $(ci).append(formattedMobile, formattedEmail, formattedTwitter, formattedGithub, formattedLocation);
+    $("#header").append(HTMLskillsStart);
+    for (var i = 0; i < bio.skills.length; i++) {
+        si = bio.skills[i];
+        var formattedSkills = HTMLskills.replace(data, si);
+        $("#skills").append(formattedSkills);
+    }
 };
-$("#header").append(HTMLskillsStart);
-for (var i = 0; i < bio.skills.length; i++) {
-    si = bio.skills[i];
-    var formattedSkills = HTMLskills.replace(data, si);
-    $("#skills").append(formattedSkills);
-}
 bio.display();
 var work = {
     jobs: [{
@@ -130,8 +130,8 @@ education.display = function() {
     }
 };
 education.display();
-var project = {
-    projects: [{
+var projects = {
+    project: [{
         title: "Lewie's Portfolio",
         dates: "2016",
         description: "Created a portfolio for my self with HTML and CSS using the bootstrap framework",
@@ -144,9 +144,9 @@ var project = {
 
     }]
 };
-project.display = function() {
-    for (var i = 0; i < project.projects.length; i++) {
-        proj = project.projects[i];
+projects.display = function() {
+    for (var i = 0; i < projects.project.length; i++) {
+        proj = projects.project[i];
         $("#projects").append(HTMLprojectStart);
         var formattedProjecttitle = HTMLprojectTitle.replace(data, proj.title);
         $(".project-entry:last").prepend(formattedProjecttitle);
@@ -154,12 +154,12 @@ project.display = function() {
         $(".project-entry:last").append(formattedProjectdates);
         var formattedProjectdesc = HTMLprojectDescription.replace(data, proj.description);
         $(".project-entry:last").append(formattedProjectdesc);
-        for (var x = 0; x < project.projects[i].images.length; x++) {
-            img = project.projects[i].images[x];
+        for (var x = 0; x < projects.project[i].images.length; x++) {
+            img = projects.project[i].images[x];
             var formattedProjectimages = HTMLprojectImage.replace(data, img);
             $(".project-entry:last").append(formattedProjectimages);
         }
     }
 };
-project.display();
+projects.display();
 $("#mapDiv").append(googleMap);
